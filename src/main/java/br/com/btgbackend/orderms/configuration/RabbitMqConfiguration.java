@@ -3,7 +3,7 @@ package br.com.btgbackend.orderms.configuration;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMqConfig {
+public class RabbitMqConfiguration {
 
     public static final String ORDER_CREATED_QUEUE = "order.created";
 
