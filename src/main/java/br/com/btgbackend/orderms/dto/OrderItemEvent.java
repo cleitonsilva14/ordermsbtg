@@ -1,4 +1,10 @@
 package br.com.btgbackend.orderms.dto;
 
-public class OrderItemEvent {
+import java.math.BigDecimal;
+
+public record OrderItemEvent(
+        String produto,
+        Integer quantidade,
+        BigDecimal preco
+) {
 }
