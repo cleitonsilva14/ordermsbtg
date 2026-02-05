@@ -1,10 +1,13 @@
 package br.com.btgbackend.orderms.service;
 
 import br.com.btgbackend.orderms.dto.OrderCreatedEvent;
+import br.com.btgbackend.orderms.dto.OrderResponse;
 import br.com.btgbackend.orderms.model.Order;
 import br.com.btgbackend.orderms.model.OrderItem;
 import br.com.btgbackend.orderms.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -27,6 +30,15 @@ public class OrderService {
         entity.setItems(getItems(event));
 
         orderRepository.save(entity);
+
+    }
+
+    public Page<OrderResponse> getAllByCustomerId(Long customerId, PageRequest pageRequest){
+
+        var orders = orderRepository
+                .findByCustomerId(customerId, pageRequest);
+
+        return orders.map(OrderResponse::from);
 
     }
 
